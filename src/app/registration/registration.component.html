@@ -1,0 +1,245 @@
+<form
+  #registrationForm="ngForm"
+  ngNativeValidate
+  (ngSubmit)="saveDetails(registrationForm)"
+>
+  <div class="panel panel-primary border">
+    <div class="panel panel-body background">
+      <div
+        class="form-group col-xs-12"
+        [class.has-error]="gender.invalid && gender.touched"
+      >
+        <label class="control-label">Title code</label>
+        <div class="row">
+          <div class="form-control input-lg">
+            <label class="radio-inline col-xs-4">
+              <input
+                required
+                type="radio"
+                value="MR."
+                name="gender"
+                [(ngModel)]="registration.gender"
+                #gender="ngModel"
+              />
+              MR.
+            </label>
+            <label class="radio-inline col-xs-4">
+              <input
+                required
+                type="radio"
+                value="MRS."
+                name="gender"
+                [(ngModel)]="registration.gender"
+                #gender="ngModel"
+              />
+              MRS.
+            </label>
+            <label class="radio-inline col-xs-3">
+              <input
+                required
+                type="radio"
+                value="MISS."
+                name="gender"
+                [(ngModel)]="registration.gender"
+                #gender="ngModel"
+              />
+              MISS.
+            </label>
+          </div>
+          <span class="help-block" *ngIf="gender.invalid && gender.touched"
+            >Required</span
+          >
+        </div>
+      </div>
+      <div
+        class="form-group"
+        [class.has-error]="firstName.invalid && firstName.touched"
+      >
+        <label for="firstName" class="control-label">First Name</label>
+        <input
+          required
+          id="firstName"
+          type="text"
+          name="firstName"
+          [(ngModel)]="registration.firstName"
+          class="form-control input-lg"
+          #firstName="ngModel"
+        />
+        <span class="help-block" *ngIf="firstName.invalid && firstName.touched"
+          >Required</span
+        >
+      </div>
+      <div
+        class="form-group"
+        [class.has-error]="mobileNumber.invalid && mobileNumber.touched"
+      >
+        <label for="mobileNumber" class="control-label">Mobile Number</label>
+        <input
+          required
+          type="text"
+          id="mobileNumber"
+          class="form-control input-lg"
+          name="mobileNumber"
+          [(ngModel)]="registration.mobileNumber"
+          #mobileNumber="ngModel"
+        />
+        <span
+          class="help-block"
+          *ngIf="mobileNumber.invalid && mobileNumber.touched"
+          >Required
+          </span        >
+      </div>
+      <div
+        class="form-group"
+        [class.has-error]="nationality.invalid && nationality.touched"
+      >
+        <label for="nationality" class="control-label">Nationality</label>
+        <select
+          required
+          id="nationality"
+          name="nationality"
+          [(ngModel)]="registration.nationality"
+          class="form-control input-lg"
+          #nationality="ngModel"
+        >
+          <option [ngValue]="null">Select</option>
+          <option *ngFor="let nation of nationalities" [value]="nation.id">{{
+            nation.name
+          }}</option>
+        </select>
+        <span
+          class="help-block"
+          *ngIf="nationality.invalid && nationality.touched"
+          >Required</span
+        >
+      </div>
+      <div
+        class="form-group"
+        [class.has-error]="birthDate.invalid && birthDate.touched"
+      >
+        <label for="birthDate" class="control-label">Birth Date</label>
+        <input
+          required
+          id="birthDate"
+          name="birthDate"
+          [(ngModel)]="registration.birthDate"
+          type="text"
+          bsDatepicker
+          [bsConfig]="datePickerConfig"
+          class="form-control input-lg"
+          #birthDate="ngModel"
+        />
+        <span class="help-block" *ngIf="birthDate.invalid && birthDate.touched"
+          >Enter valid date</span
+        >
+      </div>
+      <div
+        class="form-group"
+        [class.has-error]="address.invalid && address.touched"
+      >
+        <label for="address" class="control-label">Address</label>
+        <input
+          required
+          id="address"
+          type="text"
+          name="address"
+          [(ngModel)]="registration.address"
+          class="form-control input-lg"
+          #address="ngModel"
+        />
+        <span class="help-block" *ngIf="address.invalid && address.touched"
+          >Required</span
+        >
+      </div>
+      <div
+        class="form-group"
+        [class.has-error]="
+          addressStayingDuration.invalid && addressStayingDuration.touched
+        "
+      >
+        <label for="addressStayingDuration" class="control-label"
+          >Address stay duration</label
+        >
+        <input
+          required
+          id="addressStayingDuration"
+          type="type"
+          name="addressStayingDuration"
+          [(ngModel)]="registration.addressStayingDuration"
+          class="form-control input-lg"
+          #addressStayingDuration="ngModel"
+        />
+        <span
+          class="help-block"
+          *ngIf="
+            addressStayingDuration.invalid && addressStayingDuration.touched
+          "
+          >Required</span
+        >
+      </div>
+      <div
+        class="form-group col-xs-12"
+        [class.has-error]="maritalStatus.invalid && maritalStatus.touched"
+      >
+        <label class="control-label">Marital Status</label>
+        <div class="row">
+          <div class="form-control input-lg">
+            <label class="radio-inline col-xs-5">
+              <input
+                required
+                type="radio"
+                value="single"
+                name="maritalStatus"
+                [(ngModel)]="registration.maritalStatus"
+                #maritalStatus="ngModel"
+              />
+              Single
+            </label>
+            <label class="radio-inline col-xs-6">
+              <input
+                required
+                type="radio"
+                value="married"
+                name="maritalStatus"
+                [(ngModel)]="registration.maritalStatus"
+                #maritalStatus="ngModel"
+              />
+              Married
+            </label>
+          </div>
+          <span
+            class="help-block"
+            *ngIf="maritalStatus.invalid && maritalStatus.touched"
+            >Required</span
+          >
+        </div>
+      </div>
+      <div
+        *ngIf="marital() && married"
+        class="form-group"
+        [class.has-error]="spouseName.invalid && spouseName.touched"
+      >
+        <label for="spouseName" class="control-label">Spouse Name</label>
+        <input
+          required
+          id="spouseName"
+          type="text"
+          name="spouseName"
+          [(ngModel)]="registration.spouseName"
+          class="form-control input-lg"
+          #spouseName="ngModel"
+        />
+        <span
+          class="help-block"
+          *ngIf="spouseName.invalid && spouseName.touched"
+          >Required</span
+        >
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg active pull-right">
+        Next
+      </button>
+    </div>
+  </div>
+</form>
+
+<!-- Angular generated form model: {{ registrationForm.value | json }} -->

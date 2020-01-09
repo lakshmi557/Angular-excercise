@@ -1,0 +1,12 @@
+.radio {
+  padding: 0px 15px;
+}
+.background {
+  padding: 35px 45px;
+  background-color: rgb(245, 245, 220);
+  border-radius: 10px;
+}
+.border {
+  border: 0px;
+  border-radius: 10px;
+}

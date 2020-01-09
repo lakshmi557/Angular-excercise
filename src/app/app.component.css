@@ -1,0 +1,15 @@
+.header {
+  min-height: 200px;
+  width: auto;
+  background-color: rgb(156, 18, 18);
+  /* position: absolute; */
+}
+
+.hover {
+  /* position: absolute; */
+  margin-right: 180px;
+  margin-left: 180px;
+  margin-top: -180px;
+  margin-bottom: -100px;
+  padding: 35px 45px;
+}
